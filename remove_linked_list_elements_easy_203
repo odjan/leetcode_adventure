@@ -1,0 +1,47 @@
+# Leetcode Adventures #203
+# Problem: 
+# Given the head of a linked list and an integer val, remove all the nodes of the linked list
+# that has Node.val == val, and return the new head.
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+class Solution:
+    def removeElements(self, head: ListNode, value: int) -> ListNode:
+        # if head is empty, return an empty list
+        if head is None:
+            return None
+        
+        # remove any repeating values from head
+        while True:
+            if head.val == value:
+                if head.next is not None:
+                    head = head.next
+                    continue
+                else:
+                    head = None
+                    return head
+            else:
+                break
+                
+        
+        # now that edge case is taken care of at beginning of linked list...
+        # guaranteed that the head is not value
+        
+        dummy = head
+        
+        # go through each node and check their next value
+        # if dummy.next value is equal to value, pointer should skip ahead to the 
+        
+        while dummy.next: # if dummy.next.val is not None...
+            if dummy.next.val == value:
+                dummy.next = dummy.next.next
+                continue
+            else:
+                dummy = dummy.next
+                
+        return head
