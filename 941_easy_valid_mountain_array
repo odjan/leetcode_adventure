@@ -1,0 +1,32 @@
+class Solution:
+    def validMountainArray(self, arr: List[int]) -> bool:
+        # ensure that the maximum of the array is not at index 0
+        # ensure that the maximum of the array is not at index -1
+        max_value = max(arr)
+        print(max_value)
+        max_position = arr.index(max_value)
+        print(max_position)
+        print(len(arr))
+        if max_position == 0:
+            return False
+        if max_position == len(arr)-1:
+            return False
+        
+        # once we know where the value is, we need to check before and after
+        
+        # before: must be strictly increasing
+        for i in range(0, max_position):
+            if arr[i+1] > arr[i]:
+                continue
+            else:
+                return False
+            
+        # after: must be strictly decreasing
+        for j in range(max_position+1, len(arr)): # 2, 4
+            if arr[j-1] > arr[j]: # arr[1] > arr[2]
+                print(arr[j])
+                continue
+            else:
+                return False
+            
+        return True
